@@ -8,14 +8,12 @@ public class Main {
         ArrayList<Nastroj> nastroje = new ArrayList<>();
         ArrayList<Hrac> umelci = new ArrayList<>();
         Nastroj nastroj;
+        Hrac hrac;
         while ((line=br.readLine()) != null) {
-            System.out.println(line);
             String [] data = line.split(",");
-            for (int i = 0; i < data.length; i++) {
-                System.out.println(data[i]);
-            }
             if (data[0].equals("u")){
-
+                hrac = new Hrac(data);
+                umelci.add(hrac);
             }
             else{
                 nastroj = null;

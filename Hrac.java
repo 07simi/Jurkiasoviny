@@ -1,4 +1,4 @@
-public class Hrac {
+public class Hrac implements Saveable {
 
     private String meno;
     private String priezvisko;
@@ -10,6 +10,10 @@ public class Hrac {
         this.priezvisko = priezvisko;
         this.nastroj = nastroj;
         this.hodinovaSadzba = hodinovaSadzba;
+    }
+
+    public Hrac(String[] data) {
+        load(data);
     }
 
     public String getMeno() { return meno; }
@@ -34,5 +38,17 @@ public class Hrac {
                 '}';
     }
     
+    @Override
+    public String save() {
+        return meno + "," + priezvisko + "," + nastroj + "," + hodinovaSadzba;
+    }
+
+    @Override
+    public void load(String[] data) {
+        setMeno(data[1]);
+        setPriezvisko(data[2]);
+        setNastroj(data[3]);
+        setHodinovaSadzba(Double.parseDouble(data[4]));
+    }
 }
 
