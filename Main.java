@@ -5,15 +5,13 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("skladNastrojov.txt"));
         String line;
-        ArrayList<Nastroj> sklad = new ArrayList<>();
+        ArrayList<Nastroj> nastroje = new ArrayList<>();
         ArrayList<Hrac> umelci = new ArrayList<>();
         while ((line=br.readLine()) != null) {
-            String params[] = line.split(",");
-            if (params[0] == "u") {
-                umelci.add(new Hrac(params))
-            else {
-                if (params[0] == "s") sklad.add(new StrunovyNastroj(params));
-                else if (params[0] == "n") sklad.add(new Nastroj(params));
+            System.out.println(line);
+            String [] data = line.split(",");
+            for (int i = 0; i < data.length; i++) {
+                System.out.println(data[i]);
             }
         }
     }

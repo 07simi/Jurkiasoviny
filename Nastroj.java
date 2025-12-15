@@ -45,7 +45,7 @@ public class Nastroj implements Saveable {
 
     @Override
     public void load(String[] data) {
-        druh = data[1];
+        setDruh(data[1]);
         zvuk = data[3];
         cena = Double.parseDouble(data[2]);
         pocet = Integer.parseInt(data[4]);
