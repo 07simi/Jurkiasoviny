@@ -1,12 +1,16 @@
 public class StrunovyNastroj extends Nastroj {
 
     private int pocetStrun;
-    private String Ladenie;
+    private String ladenie;
 
-    public StrunovyNastroj(String druh, double cena, String zvuk, int pocet, int pocetStrun, String Ladenie) {
+    public StrunovyNastroj(String druh, double cena, String zvuk, int pocet, int pocetStrun, String ladenie) {
         super(druh, cena, zvuk, pocet);
         this.pocetStrun = pocetStrun;
-        this.Ladenie = "Standardne";
+        this.ladenie = ladenie;
+    }
+
+    public StrunovyNastroj(String[] params) {
+        super(params);
     }
 
     public int getPocetStrun() {
@@ -17,24 +21,26 @@ public class StrunovyNastroj extends Nastroj {
         this.pocetStrun = pocetStrun;
     }
 
-    public String getLadenie() {
-        return Ladenie;
+    public String getladenie() {
+        return ladenie;
     }
 
-    public void setLadenie(String ladenie) {
-        Ladenie = ladenie;
+    public void setladenie(String ladenie) {
+        this.ladenie = ladenie;
     }
 
     @Override
     public String toString() {
-        return "StrunovyNastroj{" +
+        return "StrunovyNastroj{" + super.toString() +
                 "pocetStrun=" + pocetStrun +
-                ", druh='" + getDruh() + '\'' +
-                ", cena=" + getCena() +
-                ", zvuk='" + getZvuk() + '\'' +
-                ", pocet=" + getPocet() +
-                ", ladenie='" + Ladenie + '\'' +
+                ", ladenie='" + ladenie + '\'' +
                 '}';
     }
     
+    @Override
+    public void load(String[] data) {
+        super.load(data);
+        pocetStrun = Integer.parseInt(data[5]);
+        ladenie = data[6];
+    }
 }
