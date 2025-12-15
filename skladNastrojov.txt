@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 S,husle,2000,tidli-daj,2,4,GDAE,1.husle
 S,husle,1500,tidli-tidli,3,4,GDAE,2.husle
 r,bicie,1500,bum-prásk,1,9
@@ -8,4 +9,16 @@ u,Miško,Guľôčka,1.husle,300
 u,Ferko,Motúzik,3.husle,150
 u,Janko,Hraško,harfa,250
 u,Marián,Varga,organ,300
+=======
+S,husle,2000,tidli-daj,2,4,GDAE,1.husle
+S,husle,1500,tidli-tidli,3,4,GDAE,2.husle
+r,bicie,1500,bum-prásk,1,9
+s,gitara akustická,500,brnk-brnk,2,6,EHGDAE
+d,saxofón,4500,turururááá,2,21,A
+u,Jožko,Púčik,2.husle,200
+u,Miško,Guľôčka,1.husle,300
+u,Ferko,Motúzik,3.husle,150
+u,Janko,Hraško,harfa,250
+u,Marián,Varga,organ,300
+>>>>>>> 8217d597d04b3f70d7749f7e338f49ca2d7308b1
 u,Martin,Valihora,bicie,234.80
