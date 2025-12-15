@@ -9,8 +9,8 @@ public class StrunovyNastroj extends Nastroj {
         this.ladenie = ladenie;
     }
 
-    public StrunovyNastroj(String[] params) {
-        super(params);
+    public StrunovyNastroj(String[] data) {
+        super(data);
     }
 
     public int getPocetStrun() {
@@ -40,7 +40,7 @@ public class StrunovyNastroj extends Nastroj {
     @Override
     public void load(String[] data) {
         super.load(data);
-        pocetStrun = Integer.parseInt(data[5]);
-        ladenie = data[6];
+        setPocetStrun(Integer.parseInt(data[5]));
+        setladenie(data[6]);
     }
 }

@@ -6,14 +6,14 @@ public class Nastroj implements Saveable {
     private int pocet;
 
     public Nastroj(String druh, double cena, String zvuk, int pocet) {
-        this.druh = druh;
-        this.cena = cena;
-        this.zvuk = zvuk;
-        this.pocet = pocet;
+        setDruh(druh);
+        setCena(cena);
+        setZvuk(zvuk);
+        setPocet(pocet);
     }
 
-    public Nastroj(String[] params) {
-        load(params);
+    public Nastroj(String[] data) {
+        load(data);
     }
 
     public String getDruh() { return druh; }
@@ -46,8 +46,8 @@ public class Nastroj implements Saveable {
     @Override
     public void load(String[] data) {
         setDruh(data[1]);
-        zvuk = data[3];
-        cena = Double.parseDouble(data[2]);
-        pocet = Integer.parseInt(data[4]);
+        setZvuk(data[3]);
+        setCena(Double.parseDouble(data[2]));
+        setPocet(Integer.parseInt(data[4]));
     }
 }
