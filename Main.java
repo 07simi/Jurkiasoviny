@@ -88,5 +88,38 @@ public class Main {
         for (Nastroj n : nastrojList) System.out.println(n);
         System.out.println("\nHráči:");
         for (Hrac h : hracList) System.out.println(h);
+
+        // Nové výpisy
+        System.out.println("\nZoznam hráčov:");
+        for (Hrac h : hracList) {
+            System.out.println(h);
+        }
+
+        System.out.println("\nDatabáza nástrojov:");
+        for (Nastroj n : nastrojList) {
+            System.out.println(n.getDruh() + "," + n.getPocet() + "," + n.getCena());
+        }
+
+        double cenaSkladu = 0;
+        for (Nastroj n : nastrojList) {
+            cenaSkladu += n.getPocet() * n.getCena();
+        }
+        System.out.println("\nCena skladu: " + cenaSkladu);
+
+        int hodiny = 2; // Predpokladané hodiny vystúpenia
+        double cenaVystupenia = 0;
+        for (Hrac h : hracList) {
+            cenaVystupenia += h.getHodinovaSadzba();
+        }
+        cenaVystupenia *= hodiny;
+        System.out.println("\nCena vystúpenia (" + hodiny + " hodín): " + cenaVystupenia);
+
+        System.out.println("\nSklad hraj:");
+        for (Nastroj n : nastrojList) {
+            for (int i = 0; i < n.getPocet(); i++) {
+                System.out.print(n.getZvuk() + " ");
+            }
+        }
+        System.out.println();
     }
 }
