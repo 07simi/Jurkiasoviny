@@ -14,7 +14,7 @@ public class DychovyNastroj extends Nastroj {
     }
     public void setPocetDier(int pocetDier) {
         if (pocetDier < 1) {
-            throw new IllegalArgumentException("Počet dier musí byť aspoň 1.");
+            throw new IllegalArgumentException("Počet dier musí byť aspoň 1");
         }
         this.pocetDier = pocetDier;
     }
@@ -23,10 +23,7 @@ public class DychovyNastroj extends Nastroj {
     }
     public void setLadenie(String ladenie) {
         if (ladenie == null || ladenie.trim().isEmpty()) {
-            throw new IllegalArgumentException("Ladenie nesmie byť prázdne.");
-        }
-        if (!ladenie.matches("[a-zA-Z0-9\\s]+")) {
-            throw new IllegalArgumentException("Ladenie môže obsahovať iba písmená, čísla a medzery.");
+            throw new IllegalArgumentException("Ladenie nesmie byť prázdne");
         }
         Ladenie = ladenie;
     }

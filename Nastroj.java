@@ -1,4 +1,4 @@
-public class Nastroj implements Saveable {
+public class Nastroj {
 
     private String druh;
     private double cena;
@@ -6,23 +6,16 @@ public class Nastroj implements Saveable {
     private int pocet;
 
     public Nastroj(String druh, double cena, String zvuk, int pocet) {
-        setDruh(druh);
-        setCena(cena);
-        setZvuk(zvuk);
-        setPocet(pocet);
-    }
-
-    public Nastroj(String[] data) {
-        load(data);
+        this.druh = druh;
+        this.cena = cena;
+        this.zvuk = zvuk;
+        this.pocet = pocet;
     }
 
     public String getDruh() { return druh; }
     public void setDruh(String druh) {
-        if (druh == null || druh.trim().isEmpty()) {
-            throw new IllegalArgumentException("Druh nástroja nesmie byť prázdny.");
-        }
-        if (!druh.matches("[a-zA-Z\\s]+")) {
-            throw new IllegalArgumentException("Druh nástroja môže obsahovať iba písmená a medzery.");
+        if (druh == null || druh.trim().isEmpty() || !druh.matches("[a-zA-ZáäčďéíľĺňóôŕšťúýžÁÄČĎÉÍĽĹŇÓÔŔŠŤÚÝŽ ]+")) {
+            throw new IllegalArgumentException("Neplatný druh nástroja");
         }
         this.druh = druh;
     }
@@ -30,7 +23,7 @@ public class Nastroj implements Saveable {
     public double getCena() { return cena; }
     public void setCena(double cena) {
         if (cena < 0) {
-            throw new IllegalArgumentException("Cena nástroja nesmie byť záporná.");
+            throw new IllegalArgumentException("Cena nesmie byť záporná");
         }
         this.cena = cena;
     }
@@ -38,10 +31,7 @@ public class Nastroj implements Saveable {
     public String getZvuk() { return zvuk; }
     public void setZvuk(String zvuk) {
         if (zvuk == null || zvuk.trim().isEmpty()) {
-            throw new IllegalArgumentException("Zvuk nástroja nesmie byť prázdny.");
-        }
-        if (!zvuk.matches("[a-zA-Z\\s\\-]+")) {
-            throw new IllegalArgumentException("Zvuk nástroja môže obsahovať iba písmená, medzery a pomlčky.");
+            throw new IllegalArgumentException("Zvuk nesmie byť prázdny");
         }
         this.zvuk = zvuk;
     }
@@ -49,7 +39,7 @@ public class Nastroj implements Saveable {
     public int getPocet() { return pocet; }
     public void setPocet(int pocet) {
         if (pocet < 0) {
-            throw new IllegalArgumentException("Počet nástrojov nesmie byť záporný.");
+            throw new IllegalArgumentException("Počet nesmie byť záporný");
         }
         this.pocet = pocet;
     }
@@ -62,18 +52,5 @@ public class Nastroj implements Saveable {
                 ", zvuk='" + zvuk + '\'' +
                 ", pocet=" + pocet +
                 '}';
-    }
-
-    @Override
-    public String save() {
-        return druh + "," + cena + "," + zvuk + "," + pocet;
-    }
-
-    @Override
-    public void load(String[] data) {
-        setDruh(data[1]);
-        setZvuk(data[3]);
-        setCena(Double.parseDouble(data[2]));
-        setPocet(Integer.parseInt(data[4]));
     }
 }

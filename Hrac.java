@@ -1,88 +1,52 @@
-public class Hrac implements Saveable {
+public class Hrac {
 
     private String meno;
     private String priezvisko;
-    private String nastroj;
+    private Nastroj nastroj;
     private double hodinovaSadzba;
-    private Nastroj priradenyNastroj;
 
-    public Hrac(String meno, String priezvisko, String nastroj, double hodinovaSadzba) {
-        setMeno(meno);
-        setPriezvisko(priezvisko);
-        setNastroj(nastroj);
-        setHodinovaSadzba(hodinovaSadzba);
-    }
-
-    public Hrac(String[] data) {
-        load(data);
+    public Hrac(String meno, String priezvisko, Nastroj nastroj, double hodinovaSadzba) {
+        this.meno = meno;
+        this.priezvisko = priezvisko;
+        this.nastroj = nastroj;
+        this.hodinovaSadzba = hodinovaSadzba;
     }
 
     public String getMeno() { return meno; }
     public void setMeno(String meno) {
-        if (meno == null || meno.trim().isEmpty()) {
-            throw new IllegalArgumentException("Meno nesmie byť prázdne.");
-        }
-        if (!meno.matches("[a-zA-Z\\s]+")) {
-            throw new IllegalArgumentException("Meno môže obsahovať iba písmená a medzery.");
+        if (meno == null || meno.trim().isEmpty() || !meno.matches("[a-zA-ZáäčďéíľĺňóôŕšťúýžÁÄČĎÉÍĽĹŇÓÔŔŠŤÚÝŽ ]+")) {
+            throw new IllegalArgumentException("Neplatné meno");
         }
         this.meno = meno;
     }
 
     public String getPriezvisko() { return priezvisko; }
     public void setPriezvisko(String priezvisko) {
-        if (priezvisko == null || priezvisko.trim().isEmpty()) {
-            throw new IllegalArgumentException("Priezvisko nesmie byť prázdne.");
-        }
-        if (!priezvisko.matches("[a-zA-Z\\s]+")) {
-            throw new IllegalArgumentException("Priezvisko môže obsahovať iba písmená a medzery.");
+        if (priezvisko == null || priezvisko.trim().isEmpty() || !priezvisko.matches("[a-zA-ZáäčďéíľĺňóôŕšťúýžÁÄČĎÉÍĽĹŇÓÔŔŠŤÚÝŽ ]+")) {
+            throw new IllegalArgumentException("Neplatné priezvisko");
         }
         this.priezvisko = priezvisko;
     }
 
-    public String getNastroj() { return nastroj; }
-    public void setNastroj(String nastroj) {
-        if (nastroj == null || nastroj.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nástroj nesmie byť prázdny.");
-        }
-        if (!nastroj.matches("[a-zA-Z0-9\\s\\.]+")) {
-            throw new IllegalArgumentException("Nástroj môže obsahovať iba písmená, čísla, medzery a bodky.");
-        }
-        this.nastroj = nastroj;
-    }
+    public Nastroj getNastroj() { return nastroj; }
+    public void setNastroj(Nastroj nastroj) { this.nastroj = nastroj; }
 
     public double getHodinovaSadzba() { return hodinovaSadzba; }
     public void setHodinovaSadzba(double hodinovaSadzba) {
         if (hodinovaSadzba < 0) {
-            throw new IllegalArgumentException("Hodinová sadzba nesmie byť záporná.");
+            throw new IllegalArgumentException("Hodinová sadzba nesmie byť záporná");
         }
         this.hodinovaSadzba = hodinovaSadzba;
     }
-
-    public Nastroj getPriradenyNastroj() { return priradenyNastroj; }
-    public void setPriradenyNastroj(Nastroj priradenyNastroj) { this.priradenyNastroj = priradenyNastroj; }
 
     @Override
     public String toString() {
         return "Hrac{" +
                 "meno='" + meno + '\'' +
                 ", priezvisko='" + priezvisko + '\'' +
-                ", nastroj='" + nastroj + '\'' +
+                ", nastroj=" + (nastroj != null ? nastroj.getDruh() : "null") +
                 ", hodinovaSadzba=" + hodinovaSadzba +
-                ", priradenyNastroj=" + (priradenyNastroj != null ? priradenyNastroj.getDruh() : "žiadny") +
                 '}';
-    }
-    
-    @Override
-    public String save() {
-        return meno + "," + priezvisko + "," + nastroj + "," + hodinovaSadzba;
-    }
-
-    @Override
-    public void load(String[] data) {
-        setMeno(data[1]);
-        setPriezvisko(data[2]);
-        setNastroj(data[3]);
-        setHodinovaSadzba(Double.parseDouble(data[4]));
     }
 }
 

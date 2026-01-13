@@ -12,7 +12,7 @@ public class RytmickyNastroj extends Nastroj {
     }
     public void setPocetZvukov(int pocetZvukov) {
         if (pocetZvukov < 1) {
-            throw new IllegalArgumentException("Počet zvukov musí byť aspoň 1.");
+            throw new IllegalArgumentException("Počet zvukov musí byť aspoň 1");
         }
         this.pocetZvukov = pocetZvukov;
     }
