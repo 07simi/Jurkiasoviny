@@ -1,9 +1,9 @@
 public class StrunovyNastroj extends Nastroj {
 
     private int pocetStrun;
-    private String Ladenie;
+    private String ladenie;
 
-    public StrunovyNastroj(String druh, double cena, String zvuk, int pocet, int pocetStrun, String Ladenie) {
+    public StrunovyNastroj(String druh, double cena, String zvuk, int pocet, int pocetStrun, String ladenie) {
         super(druh, cena, zvuk, pocet);
         this.pocetStrun = pocetStrun;
         this.Ladenie = Ladenie;
@@ -20,30 +20,26 @@ public class StrunovyNastroj extends Nastroj {
         this.pocetStrun = pocetStrun;
     }
 
-    public String getLadenie() {
-        return Ladenie;
+    public String getladenie() {
+        return ladenie;
     }
 
     public void setLadenie(String ladenie) {
-        if (ladenie == null || ladenie.trim().isEmpty()) {
-            throw new IllegalArgumentException("Ladenie nesmie byť prázdne.");
-        }
-        if (!ladenie.matches("[a-zA-Z0-9\\s]+")) {
-            throw new IllegalArgumentException("Ladenie môže obsahovať iba písmená, čísla a medzery.");
-        }
         Ladenie = ladenie;
     }
 
     @Override
     public String toString() {
-        return "StrunovyNastroj{" +
+        return "StrunovyNastroj{" + super.toString() +
                 "pocetStrun=" + pocetStrun +
-                ", druh='" + getDruh() + '\'' +
-                ", cena=" + getCena() +
-                ", zvuk='" + getZvuk() + '\'' +
-                ", pocet=" + getPocet() +
-                ", ladenie='" + Ladenie + '\'' +
+                ", ladenie='" + ladenie + '\'' +
                 '}';
     }
     
+    @Override
+    public void load(String[] data) {
+        super.load(data);
+        setPocetStrun(Integer.parseInt(data[5]));
+        setladenie(data[6]);
+    }
 }
