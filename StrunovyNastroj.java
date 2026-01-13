@@ -6,7 +6,7 @@ public class StrunovyNastroj extends Nastroj {
     public StrunovyNastroj(String druh, double cena, String zvuk, int pocet, int pocetStrun, String Ladenie) {
         super(druh, cena, zvuk, pocet);
         this.pocetStrun = pocetStrun;
-        this.Ladenie = "Standardne";
+        this.Ladenie = Ladenie;
     }
 
     public int getPocetStrun() {
@@ -14,6 +14,9 @@ public class StrunovyNastroj extends Nastroj {
     }
 
     public void setPocetStrun(int pocetStrun) {
+        if (pocetStrun < 1) {
+            throw new IllegalArgumentException("Počet strún musí byť aspoň 1.");
+        }
         this.pocetStrun = pocetStrun;
     }
 
@@ -22,6 +25,12 @@ public class StrunovyNastroj extends Nastroj {
     }
 
     public void setLadenie(String ladenie) {
+        if (ladenie == null || ladenie.trim().isEmpty()) {
+            throw new IllegalArgumentException("Ladenie nesmie byť prázdne.");
+        }
+        if (!ladenie.matches("[a-zA-Z0-9\\s]+")) {
+            throw new IllegalArgumentException("Ladenie môže obsahovať iba písmená, čísla a medzery.");
+        }
         Ladenie = ladenie;
     }
 

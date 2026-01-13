@@ -11,6 +11,12 @@ public class SlacikovyNastroj extends StrunovyNastroj {
     }
 
     public void setSekcia(String sekcia) {
+        if (sekcia == null || sekcia.trim().isEmpty()) {
+            throw new IllegalArgumentException("Sekcia nesmie byť prázdna.");
+        }
+        if (!sekcia.matches("[a-zA-Z0-9\\s\\.]+")) {
+            throw new IllegalArgumentException("Sekcia môže obsahovať iba písmená, čísla, medzery a bodky.");
+        }
         this.sekcia = sekcia;
     }
 

@@ -11,6 +11,9 @@ public class KlavesovyNastroj extends Nastroj {
     }
 
     public void setPocetKlavies(int pocetKlavies) {
+        if (pocetKlavies < 1) {
+            throw new IllegalArgumentException("Počet klávesov musí byť aspoň 1.");
+        }
         this.pocetKlavies = pocetKlavies;
     }
 
