@@ -1,4 +1,4 @@
-public class KlavesovyNastroj extends Nastroj {
+public class KlavesovyNastroj extends Nastroj implements Saveable {
     private int pocetKlavies;
 
     public KlavesovyNastroj(String druh, double cena, String zvuk, int pocet, int pocetKlavies) {
@@ -12,9 +12,22 @@ public class KlavesovyNastroj extends Nastroj {
 
     public void setPocetKlavies(int pocetKlavies) {
         if (pocetKlavies < 1) {
-            throw new IllegalArgumentException("Počet klávesov musí byť aspoň 1");
+            throw new IllegalArgumentException("Počet klávies musí byť aspoň 1");
         }
         this.pocetKlavies = pocetKlavies;
+    }
+
+    @Override
+    public String save() {
+        return "k," + getDruh() + "," + getCena() + "," + getZvuk() + "," + getPocet() + "," + pocetKlavies;
+    }
+
+    @Override
+    public void load(String[] data) {
+        super.load(data);
+        if (data.length >= 6) {
+            setPocetKlavies(Integer.parseInt(data[5].trim()));
+        }
     }
 
     @Override

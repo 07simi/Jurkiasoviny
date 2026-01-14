@@ -32,6 +32,20 @@ public class StrunovyNastroj extends Nastroj {
     }
 
     @Override
+    public String save() {
+        return "s," + getDruh() + "," + getCena() + "," + getZvuk() + "," + getPocet() + "," + pocetStrun + "," + Ladenie;
+    }
+
+    @Override
+    public void load(String[] data) {
+        super.load(data);
+        if (data.length >= 7) {
+            setPocetStrun(Integer.parseInt(data[5].trim()));
+            setLadenie(data[6].trim());
+        }
+    }
+
+    @Override
     public String toString() {
         return "StrunovyNastroj{" +
                 "pocetStrun=" + pocetStrun +

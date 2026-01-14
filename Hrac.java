@@ -1,9 +1,10 @@
-public class Hrac {
+public class Hrac implements Saveable {
 
     private String meno;
     private String priezvisko;
     private Nastroj nastroj;
     private double hodinovaSadzba;
+    private String instrumentName;
 
     public Hrac(String meno, String priezvisko, Nastroj nastroj, double hodinovaSadzba) {
         this.meno = meno;
@@ -37,6 +38,27 @@ public class Hrac {
             throw new IllegalArgumentException("Hodinová sadzba nesmie byť záporná");
         }
         this.hodinovaSadzba = hodinovaSadzba;
+    }
+
+    @Override
+    public String save() {
+        String nazovNastroja = (nastroj != null) ? nastroj.getDruh() : "";
+        return "u," + meno + "," + priezvisko + "," + nazovNastroja + "," + hodinovaSadzba;
+    }
+
+    @Override
+    public void load(String[] data) {
+        if (data.length < 5) {
+            throw new IllegalArgumentException("Nedostatočne údajov");
+        }
+        setMeno(data[1].trim());
+        setPriezvisko(data[2].trim());
+        instrumentName = data[3].trim();
+        setHodinovaSadzba(Double.parseDouble(data[4].trim()));
+    }
+
+    public String getInstrumentName() {
+        return instrumentName;
     }
 
     @Override

@@ -1,4 +1,4 @@
-public class SlacikovyNastroj extends StrunovyNastroj {
+public class SlacikovyNastroj extends StrunovyNastroj implements Saveable {
     private String sekcia;
 
     public SlacikovyNastroj(String druh, double cena, String zvuk, int pocet, int pocetStrun, String Ladenie, String sekcia) {
@@ -15,6 +15,19 @@ public class SlacikovyNastroj extends StrunovyNastroj {
             throw new IllegalArgumentException("Sekcia nesmie byť prázdna");
         }
         this.sekcia = sekcia;
+    }
+
+    @Override
+    public String save() {
+        return "S," + getDruh() + "," + getCena() + "," + getZvuk() + "," + getPocet() + "," + getPocetStrun() + "," + getLadenie() + "," + sekcia;
+    }
+
+    @Override
+    public void load(String[] data) {
+        super.load(data);
+        if (data.length >= 8) {
+            setSekcia(data[7].trim());
+        }
     }
 
     @Override

@@ -1,4 +1,4 @@
-public class Nastroj {
+public class Nastroj implements Saveable {
 
     private String druh;
     private double cena;
@@ -42,6 +42,22 @@ public class Nastroj {
             throw new IllegalArgumentException("Počet nesmie byť záporný");
         }
         this.pocet = pocet;
+    }
+
+    @Override
+    public String save() {
+        return druh + "," + cena + "," + zvuk + "," + pocet;
+    }
+
+    @Override
+    public void load(String[] data) {
+        if (data.length < 5) {
+            throw new IllegalArgumentException("Nedostatočne údajov");
+        }
+        setDruh(data[1].trim());
+        setCena(Double.parseDouble(data[2].trim()));
+        setZvuk(data[3].trim());
+        setPocet(Integer.parseInt(data[4].trim()));
     }
 
     @Override

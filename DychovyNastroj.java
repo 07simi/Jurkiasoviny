@@ -1,4 +1,4 @@
-public class DychovyNastroj extends Nastroj {
+public class DychovyNastroj extends Nastroj implements Saveable {
 
     private int pocetDier;
     private String Ladenie;
@@ -27,6 +27,20 @@ public class DychovyNastroj extends Nastroj {
         }
         Ladenie = ladenie;
     }
+    @Override
+    public String save() {
+        return "d," + getDruh() + "," + getCena() + "," + getZvuk() + "," + getPocet() + "," + pocetDier + "," + Ladenie;
+    }
+
+    @Override
+    public void load(String[] data) {
+        super.load(data);
+        if (data.length >= 7) {
+            setPocetDier(Integer.parseInt(data[5].trim()));
+            setLadenie(data[6].trim());
+        }
+    }
+
     @Override
     public String toString() {
         return "DychovyNastroj{" +
